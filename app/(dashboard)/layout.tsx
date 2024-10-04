@@ -70,7 +70,7 @@ function DesktopNav() {
         >
           {/* <VercelLogo className="h-3 w-3 transition-all group-hover:scale-110" /> */}
           C2Y
-          <span className="sr-only">Acme Inc</span>
+          <span className="sr-only">IAHA – International Associationfor Healthy Aging</span>
         </Link>
 
         
@@ -120,6 +120,7 @@ function MobileNav() {
           <span className="sr-only">Toggle Menu</span>
         </Button>
       </SheetTrigger>
+
       <SheetContent side="left" className="sm:max-w-xs">
         <nav className="grid gap-6 text-lg font-medium">
           <Link
@@ -127,43 +128,36 @@ function MobileNav() {
             className="group flex h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:text-base"
           >
             <Package2 className="h-5 w-5 transition-all group-hover:scale-110" />
-            <span className="sr-only">Vercel</span>
+            <span className="sr-only">C2Y</span>
           </Link>
+
+
           <Link
-            href="#"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-          >
-            <Home className="h-5 w-5" />
-            Dashboard
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-          >
-            <ShoppingCart className="h-5 w-5" />
-            Orders
-          </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-4 px-2.5 text-foreground"
-          >
-            <Package className="h-5 w-5" />
-            Products
-          </Link>
-          <Link
-            href="#"
+            href="/customers"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
             <Users2 className="h-5 w-5" />
             Customers
           </Link>
+
+
           <Link
-            href="#"
+            href="/merchants"
             className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
           >
-            <LineChart className="h-5 w-5" />
-            Settings
+            <Package className="h-5 w-5" />
+            Merchants
           </Link>
+
+
+          <Link
+            href="/caregivers"
+            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+          >
+            <Hospital className="h-5 w-5" />
+            Caregivers
+          </Link>
+
         </nav>
       </SheetContent>
     </Sheet>
