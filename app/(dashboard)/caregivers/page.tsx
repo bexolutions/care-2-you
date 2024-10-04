@@ -1,19 +1,20 @@
-// pages/customers/page.tsx
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { File, PlusCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { CustomersTable } from './customers-table'; // Import the new CustomersTable
-import { getCustomers } from '@/lib/customers';
+import { getCaregivers } from '@/lib/caregivers';
+import { CaregiversTable } from './caregivers-table';
 
 
-export default async function CustomersPage({
+
+
+export default async function ProductsPage({
   searchParams
 }: {
   searchParams: { q: string; offset: string };
 }) {
   const search = searchParams.q ?? '';
   const offset = searchParams.offset ?? 0;
-  const { customers, newOffset, totalCustomers } = await getCustomers( // Adjust to fetch customers
+  const { caregivers, newOffset, totalCaregivers } = await getCaregivers(
     search,
     Number(offset)
   );
@@ -24,7 +25,7 @@ export default async function CustomersPage({
         <TabsList>
           <TabsTrigger value="all">All</TabsTrigger>
           <TabsTrigger value="active">Active</TabsTrigger>
-          <TabsTrigger value="inactive">Inactive</TabsTrigger>
+          <TabsTrigger value="draft">Draft</TabsTrigger>
           <TabsTrigger value="archived" className="hidden sm:flex">
             Archived
           </TabsTrigger>
@@ -39,16 +40,16 @@ export default async function CustomersPage({
           <Button size="sm" className="h-8 gap-1">
             <PlusCircle className="h-3.5 w-3.5" />
             <span className="sr-only sm:not-sr-only sm:whitespace-nowrap">
-              Add Customer
+              Add Caregiver
             </span>
           </Button>
         </div>
       </div>
       <TabsContent value="all">
-        <CustomersTable
-          customers={customers}
+        <CaregiversTable
+          caregivers={caregivers}
           offset={newOffset ?? 0}
-          totalCustomers={totalCustomers}
+          totalCaregivers={totalCaregivers}
         />
       </TabsContent>
     </Tabs>

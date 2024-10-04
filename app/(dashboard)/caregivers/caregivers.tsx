@@ -10,32 +10,22 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { MoreHorizontal } from 'lucide-react';
 import { TableCell, TableRow } from '@/components/ui/table';
-import { SelectProduct } from '@/lib/db';
-import { deleteProduct } from './actions';
+import { deleteCaregiver } from './actions'; // Ensure this is defined for caregivers
+import { SelectCaregiver } from '@/lib/caregivers'; // Update this import
 
-export function Product({ product }: { product: SelectProduct }) {
+export function Caregiver({ caregiver }: { caregiver: SelectCaregiver }) {
   return (
     <TableRow>
-      <TableCell className="hidden sm:table-cell">
-        <Image
-          alt="Product image"
-          className="aspect-square rounded-md object-cover"
-          height="64"
-          src={product.imageUrl}
-          width="64"
-        />
+      <TableCell className="font-medium">
+        {caregiver.name}
       </TableCell>
-      <TableCell className="font-medium">{product.name}</TableCell>
       <TableCell>
         <Badge variant="outline" className="capitalize">
-          {product.status}
+          {caregiver.status}
         </Badge>
       </TableCell>
-      <TableCell className="hidden md:table-cell">{`$${product.price}`}</TableCell>
-      <TableCell className="hidden md:table-cell">{product.stock}</TableCell>
-      <TableCell className="hidden md:table-cell">
-        {product.availableAt.toLocaleDateString("en-US")}
-      </TableCell>
+      <TableCell className="hidden md:table-cell">{caregiver.location}</TableCell>
+      <TableCell className="hidden md:table-cell">{caregiver.qualifications?.join(', ')}</TableCell> {/* Update this to show qualifications */}
       <TableCell>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -48,7 +38,7 @@ export function Product({ product }: { product: SelectProduct }) {
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem>Edit</DropdownMenuItem>
             <DropdownMenuItem>
-              <form action={deleteProduct}>
+              <form action={deleteCaregiver}>
                 <button type="submit">Delete</button>
               </form>
             </DropdownMenuItem>

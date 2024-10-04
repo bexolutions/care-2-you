@@ -7,7 +7,8 @@ import {
   PanelLeft,
   Settings,
   ShoppingCart,
-  Users2
+  Users2,
+  Hospital
 } from 'lucide-react';
 
 import {
@@ -31,6 +32,7 @@ import { VercelLogo } from '@/components/icons';
 import Providers from './providers';
 import { NavItem } from './nav-item';
 import { SearchInput } from './search';
+import { DashboardBreadcrumb } from 'app/dashboard-breadcrumbs';
 
 export default function DashboardLayout({
   children
@@ -62,33 +64,34 @@ function DesktopNav() {
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-        <Link
+        <Link style={{padding: '1rems'}}
           href="https://vercel.com/templates/next.js/admin-dashboard-tailwind-postgres-react-nextjs"
           className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
         >
-          <VercelLogo className="h-3 w-3 transition-all group-hover:scale-110" />
+          {/* <VercelLogo className="h-3 w-3 transition-all group-hover:scale-110" /> */}
+          C2Y
           <span className="sr-only">Acme Inc</span>
         </Link>
 
-        <NavItem href="#" label="Dashboard">
-          <Home className="h-5 w-5" />
-        </NavItem>
+        
 
-        <NavItem href="#" label="Orders">
-          <ShoppingCart className="h-5 w-5" />
-        </NavItem>
-
-        <NavItem href="/" label="Products">
-          <Package className="h-5 w-5" />
-        </NavItem>
-
+        
         <NavItem href="/customers" label="Customers">
           <Users2 className="h-5 w-5" />
         </NavItem>
 
-        <NavItem href="#" label="Analytics">
-          <LineChart className="h-5 w-5" />
+        <NavItem href="/merchants" label="Merchants">
+          <Package className="h-5 w-5" />
         </NavItem>
+
+
+        <NavItem href="/caregivers" label="Caregivers">
+          <Hospital className="h-5 w-5" />
+        </NavItem>
+
+        
+
+        
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
         <Tooltip>
@@ -167,26 +170,4 @@ function MobileNav() {
   );
 }
 
-function DashboardBreadcrumb() {
-  return (
-    <Breadcrumb className="hidden md:flex">
-      <BreadcrumbList>
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="#">Dashboard</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink asChild>
-            <Link href="#">Products</Link>
-          </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbPage>All Products</BreadcrumbPage>
-        </BreadcrumbItem>
-      </BreadcrumbList>
-    </Breadcrumb>
-  );
-}
+

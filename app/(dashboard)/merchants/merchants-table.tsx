@@ -15,62 +15,56 @@ import {
   CardHeader,
   CardTitle
 } from '@/components/ui/card';
-import { Product } from './product';
-import { SelectProduct } from '@/lib/db';
+import { Merchant } from './merchants';
+import { SelectMerchant } from '@/lib/db';
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-export function ProductsTable({
-  products,
+export function MerchantsTable({
+  merchants,
   offset,
-  totalProducts
+  totalMerchants
 }: {
-  products: SelectProduct[];
+  merchants: SelectMerchant[];
   offset: number;
-  totalProducts: number;
+  totalMerchants: number;
 }) {
-  let router = useRouter();
-  let productsPerPage = 5;
+  const router = useRouter();
+  const merchantsPerPage = 5;
 
-  function prevPage() {
+  const prevPage = () => {
     router.back();
-  }
+  };
 
-  function nextPage() {
+  const nextPage = () => {
     router.push(`/?offset=${offset}`, { scroll: false });
-  }
+  };
 
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Products</CardTitle>
+        <CardTitle>Merchants Table</CardTitle>
         <CardDescription>
-          Manage your products and view their sales performance.
-        </CardDescription>
+          Alle Care2You Merchants        
+</CardDescription>
       </CardHeader>
       <CardContent>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="hidden w-[100px] sm:table-cell">
-                <span className="sr-only">Image</span>
-              </TableHead>
               <TableHead>Name</TableHead>
               <TableHead>Status</TableHead>
-              <TableHead className="hidden md:table-cell">Price</TableHead>
-              <TableHead className="hidden md:table-cell">
-                Total Sales
-              </TableHead>
-              <TableHead className="hidden md:table-cell">Created at</TableHead>
+              <TableHead className="hidden md:table-cell">Standort</TableHead>
+              <TableHead className="hidden md:table-cell">Branche</TableHead>
               <TableHead>
                 <span className="sr-only">Actions</span>
               </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {products.map((product) => (
-              <Product key={product.id} product={product} />
+            {merchants.map((merchant) => (
+              <Merchant key={merchant.id} merchant={merchant} />
             ))}
           </TableBody>
         </Table>
@@ -80,9 +74,9 @@ export function ProductsTable({
           <div className="text-xs text-muted-foreground">
             Showing{' '}
             <strong>
-              {Math.min(offset - productsPerPage, totalProducts) + 1}-{offset}
+              {Math.min(offset - merchantsPerPage, totalMerchants) + 1}-{offset}
             </strong>{' '}
-            of <strong>{totalProducts}</strong> products
+            of <strong>{totalMerchants}</strong> merchants
           </div>
           <div className="flex">
             <Button
@@ -90,19 +84,19 @@ export function ProductsTable({
               variant="ghost"
               size="sm"
               type="submit"
-              disabled={offset === productsPerPage}
+              disabled={offset === merchantsPerPage}
             >
               <ChevronLeft className="mr-2 h-4 w-4" />
-              Prev
+              Zurück
             </Button>
             <Button
               formAction={nextPage}
               variant="ghost"
               size="sm"
               type="submit"
-              disabled={offset + productsPerPage > totalProducts}
+              disabled={offset + merchantsPerPage > totalMerchants}
             >
-              Next
+              Weiter
               <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
