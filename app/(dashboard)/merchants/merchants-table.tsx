@@ -16,10 +16,11 @@ import {
   CardTitle
 } from '@/components/ui/card';
 import { Merchant } from './merchants';
-import { SelectMerchant } from '@/lib/db';
+
 import { useRouter } from 'next/navigation';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { SelectMerchant } from '@/lib/merchants';
 
 export function MerchantsTable({
   merchants,
